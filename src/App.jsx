@@ -9,6 +9,7 @@ function App() {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
+  const [showSuccess, setShowSuccess] = useState(false);
 
   function handleClick(e) {
     e.preventDefault();
@@ -38,6 +39,17 @@ function App() {
     if (Object.keys(newErrors).length === 0) {
       setErrors({});
       console.log("Form gonderildi");
+      console.log(formData);
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 1500);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     } else {
       setErrors(newErrors);
     }
@@ -72,6 +84,24 @@ function App() {
         >
           Qeydiyyat Formu
         </h2>
+
+        {showSuccess && (
+          <div
+            style={{
+              backgroundColor: "#d4edda",
+              color: "#155724",
+              padding: "12px",
+              borderRadius: "6px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontSize: "16px",
+              fontWeight: "bold",
+              border: "1px solid #c3e6cb",
+            }}
+          >
+            ✅ Form göndərildi!
+          </div>
+        )}
 
         <input
           style={{
